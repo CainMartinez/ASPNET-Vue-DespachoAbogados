@@ -1,0 +1,43 @@
+## Environment variables (protección de información sensible)
+.env
+docs
+
+## Archivos build y caché
+bin/
+obj/
+*.user
+*.suo
+*.cache
+
+## Directorios de Visual Studio
+.vs/
+.vscode/
+
+## Archivos de usuario
+*.userprefs
+*.usertasks
+
+## Archivos de sistema
+.DS_Store
+Thumbs.db
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+## Logs
+*.log
+logs/
+
+## Archivos temporales
+*.tmp
+*.temp
+*.swp
+
+## Docker
+.dockerignore
+
+## MySQL data
+mysql_data/
