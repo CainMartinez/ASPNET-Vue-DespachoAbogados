@@ -17,8 +17,7 @@ RUN dotnet publish "AbogadosAPI.csproj" -c Release -o /app/publish /p:UseAppHost
 # Imagen final para ejecutar la aplicación
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 6050
 
 COPY --from=publish /app/publish .
 
