@@ -1,0 +1,27 @@
+# Dockerfile para ejecutar tests con .NET 9.0
+FROM mcr.microsoft.com/dotnet/sdk:9.0
+
+WORKDIR /app
+
+# Copiar solo lo necesario del proyecto principal
+COPY AbogadosAPI.csproj ./
+COPY Controllers/ ./Controllers/
+COPY Data/ ./Data/
+COPY DTOs/ ./DTOs/
+COPY Models/ ./Models/
+COPY Services/ ./Services/
+COPY Program.cs ./
+COPY appsettings.json ./
+
+# Copiar proyecto de tests
+COPY AbogadosAPI.Tests/AbogadosAPI.Tests.csproj ./AbogadosAPI.Tests/
+COPY AbogadosAPI.Tests/Usings.cs ./AbogadosAPI.Tests/
+COPY AbogadosAPI.Tests/UnitTests/ ./AbogadosAPI.Tests/UnitTests/
+COPY AbogadosAPI.Tests/IntegrationTests/ ./AbogadosAPI.Tests/IntegrationTests/
+
+# Restaurar y ejecutar tests
+WORKDIR /app/AbogadosAPI.Tests
+RUN dotnet restore
+RUN dotnet build --no-restore
+
+ENTRYPOINT ["dotnet", "test", "--no-build", "--logger", "console;verbosity=detailed"]

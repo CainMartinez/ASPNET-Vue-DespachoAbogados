@@ -54,10 +54,16 @@ builder.Services.AddScoped<ExpedientesPorEstadoReportService>();
 builder.Services.AddScoped<ActuacionesPorExpedienteReportService>();
 builder.Services.AddScoped<PdfReportService>();
 
-// Configuración de MySQL
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+// Configuración de Base de Datos (MySQL para producción, se omite para tests)
+var useInMemoryDatabase = Environment.GetEnvironmentVariable("USE_IN_MEMORY_DATABASE") == "true";
+if (!useInMemoryDatabase)
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+}
+// Si USE_IN_MEMORY_DATABASE=true, no configuramos DbContext aquí
+// El CustomWebApplicationFactory lo configurará con InMemory
 
 // Configuración de CORS para desarrollo
 builder.Services.AddCors(options =>
@@ -91,20 +97,31 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Crear base de datos si no existe y aplicar migraciones
+// Solo ejecutar si no estamos usando InMemory database (tests)
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
     
-    try
+    // Verificar si estamos usando InMemory database (tests)
+    var isInMemory = db.Database.ProviderName == "Microsoft.EntityFrameworkCore.InMemory";
+    
+    if (!isInMemory)
     {
-        logger.LogInformation("Creando/actualizando base de datos...");
-        db.Database.EnsureCreated();
-        logger.LogInformation("Base de datos lista");
+        try
+        {
+            logger.LogInformation("Creando/actualizando base de datos...");
+            db.Database.EnsureCreated();
+            logger.LogInformation("Base de datos lista");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error al crear la base de datos");
+        }
     }
-    catch (Exception ex)
+    else
     {
-        logger.LogError(ex, "Error al crear la base de datos");
+        logger.LogInformation("Usando base de datos en memoria (modo test)");
     }
 }
 
