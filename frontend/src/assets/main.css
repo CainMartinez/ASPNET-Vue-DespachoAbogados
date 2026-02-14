@@ -1,0 +1,340 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de Colores Profesional - Despacho de Abogados */
+  --primary-brown: #5D4E37;
+  --secondary-brown: #8B7355;
+  --light-brown: #A0826D;
+  --accent-gold: #D4AF37;
+  --accent-gold-light: #E8C961;
+  --accent-gold-dark: #B8941F;
+  
+  --text-primary: #3E2723;
+  --text-secondary: #5D4E37;
+  --text-muted: #8B7355;
+  
+  --bg-primary: #FAF8F3;
+  --bg-secondary: #F5F1E8;
+  --bg-tertiary: #EBE5D9;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAF8F3;
+  
+  --border-color: #D4C5B0;
+  --border-gold: #D4AF37;
+  
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #8B7355;
+  
+  /* Tipografía Profesional */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  overflow-x: hidden;
+}
+
+#app {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+/* Efectos de fondo para dar ambiente profesional */
+#app::before {
+  content: none;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 5px;
+  border: 2px solid var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold-light);
+}
+
+/* Utilidades de texto */
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animaciones sutiles */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* PrimeVue Overrides para temática legal */
+.p-component {
+  font-family: 'Inter', sans-serif;
+}
+
+.p-button {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.p-button-primary {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: var(--primary-brown);
+}
+
+.p-button-primary:hover {
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.p-button-outlined {
+  border-width: 2px;
+}
+
+.p-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.p-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--primary-brown);
+  color: var(--accent-gold);
+  border-color: var(--border-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: var(--bg-secondary);
+}
+
+.p-inputtext {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+.p-inputtext:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.p-dialog .p-dialog-header {
+  background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
+  color: white;
+  border-bottom: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  padding: 1.5rem;
+}
+
+.p-dialog .p-dialog-content {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+/* Confirm Dialog */
+.p-confirm-dialog .p-dialog-content {
+  padding: 1.25rem 1.5rem;
+}
+
+.p-confirm-dialog .p-dialog-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem 1.25rem;
+}
+
+.p-confirm-dialog .p-button {
+  min-width: 140px;
+  padding: 0.55rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.p-toast .p-toast-message {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+  border-left: 5px solid var(--accent-gold);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(93, 78, 55, 0.18);
+  overflow: hidden;
+}
+
+.p-toast .p-toast-message-content {
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.p-toast .p-toast-message-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.p-toast .p-toast-summary {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.p-toast .p-toast-detail {
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.p-toast .p-toast-icon-close {
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.p-toast .p-toast-icon-close:hover {
+  color: var(--primary-brown);
+  background: rgba(93, 78, 55, 0.08);
+}
+
+/* Paginación */
+.p-paginator {
+  background: var(--primary-brown);
+  color: var(--accent-gold);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+}
+
+.p-paginator .p-paginator-current {
+  margin-right: 1.5rem;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  color: var(--accent-gold);
+  min-width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--accent-gold);
+  color: var(--primary-brown);
+  font-weight: 700;
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  color: var(--accent-gold);
+}
+
+.p-paginator .p-dropdown {
+  background: var(--secondary-brown);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  margin-left: 1rem;
+}
+
+.p-paginator .p-dropdown:hover {
+  border-color: var(--accent-gold-light);
+}
+
