@@ -1,0 +1,26 @@
+var _program_8cs =
+[
+    [ "Program", "class_program.html", null ],
+    [ "scope", "_program_8cs.html#a1d14e0e8a873ff1f69a6e22bec48521a", null ],
+    [ "AddControllers", "_program_8cs.html#abc3694a0e15618f2499e5a540264f833", null ],
+    [ "AddCors", "_program_8cs.html#a56333e29eba17b2f9cabf631dbec4d14", null ],
+    [ "AddEndpointsApiExplorer", "_program_8cs.html#a0d7859f9cad50e8e9fdf015100780e07", null ],
+    [ "AddScoped< ActuacionesPorExpedienteReportService >", "_program_8cs.html#ae9058716146e48f49ea4ad4a46164771", null ],
+    [ "AddScoped< ClientesReportService >", "_program_8cs.html#a7902101a470b47fc76d2bdbae4d69e10", null ],
+    [ "AddScoped< ExpedientesPorEstadoReportService >", "_program_8cs.html#aa0c5260883a9baaf72be2758a1e9838d", null ],
+    [ "AddScoped< IActuacionService, ActuacionService >", "_program_8cs.html#addb6ad02870c20e561f721edb3344147", null ],
+    [ "AddScoped< ICitaService, CitaService >", "_program_8cs.html#ade359b113f529ff1d0c9e44b63ee9085", null ],
+    [ "AddScoped< IClienteService, ClienteService >", "_program_8cs.html#a8d4f0ed72597b08fc63898c0d7f44e68", null ],
+    [ "AddScoped< IDocumentoService, DocumentoService >", "_program_8cs.html#a7c5f4185982ff5069c4eedae5b127127", null ],
+    [ "AddScoped< IExpedienteService, ExpedienteService >", "_program_8cs.html#a662511c4dcf75fd286227ddbb366440c", null ],
+    [ "AddScoped< PdfReportService >", "_program_8cs.html#ac51dcb6e632ead064ebe93da5d5311f6", null ],
+    [ "AddSwaggerGen", "_program_8cs.html#a89f8d3a6dde9654a48b53eea470ee241", null ],
+    [ "if", "_program_8cs.html#aeead7f4e525017c52ec0aa35ee2e743b", null ],
+    [ "if", "_program_8cs.html#a79a944c7f0e25196ca3c5a8638b919b9", null ],
+    [ "MapControllers", "_program_8cs.html#a9e2ee3170aa6279b68eefd1651f7d96c", null ],
+    [ "UseAuthorization", "_program_8cs.html#af6f72d752b2e73aa0292f74bd13237ab", null ],
+    [ "UseCors", "_program_8cs.html#adfcad7d2e6cbf2e6372bbe0f9fa96231", null ],
+    [ "app", "_program_8cs.html#a7b225fcb720e4d5ed2bbf60e28a25e6d", null ],
+    [ "builder", "_program_8cs.html#a2f78352277081c620fd4cf92a5ce15e5", null ],
+    [ "useInMemoryDatabase", "_program_8cs.html#a70bf6d553a1636edc485c99d0374033f", null ]
+];
