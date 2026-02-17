@@ -34,8 +34,9 @@ export interface ClienteCreateDto {
 }
 
 export interface ClienteUpdateDto {
-  nombre?: string
-  apellidos?: string
+  nombre: string
+  apellidos: string
+  dniCif: string
   telefono?: string
   email?: string
   direccion?: string

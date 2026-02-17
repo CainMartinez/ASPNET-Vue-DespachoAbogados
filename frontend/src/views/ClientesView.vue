@@ -134,6 +134,7 @@ async function guardarCliente() {
       const updateData: ClienteUpdateDto = {
         nombre: formData.value.nombre,
         apellidos: formData.value.apellidos,
+        dniCif: formData.value.dniCif,
         email: formData.value.email,
         telefono: formData.value.telefono,
         direccion: formData.value.direccion,

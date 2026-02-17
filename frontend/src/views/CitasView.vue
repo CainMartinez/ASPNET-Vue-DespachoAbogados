@@ -118,6 +118,21 @@ const stats = computed(() => {
   return { total, citasHoy, completadas, pendientes }
 })
 
+// Validación de fechas
+const fechasValidas = computed(() => {
+  if (!formData.value.fechaInicio || !formData.value.fechaFin) {
+    return true // Si no hay fechas, no validar
+  }
+  return formData.value.fechaFin >= formData.value.fechaInicio
+})
+
+const mensajeErrorFechas = computed(() => {
+  if (!fechasValidas.value) {
+    return 'La fecha de fin no puede ser anterior a la fecha de inicio'
+  }
+  return ''
+})
+
 // Helper para convertir fecha a ISO string
 const toISOString = (fecha: Date): string => {
   return fecha.toISOString()
@@ -216,6 +231,17 @@ const abrirDetalle = (cita: CitaDto) => {
 
 const guardarCita = async () => {
   try {
+    // Validar fechas antes de guardar
+    if (!fechasValidas.value) {
+      toast.add({
+        severity: 'warn',
+        summary: 'Validación',
+        detail: 'La fecha de fin no puede ser anterior a la fecha de inicio',
+        life: 4000
+      })
+      return
+    }
+
     if (isEditing.value && currentCita.value) {
       const payload: CitaUpdateDto = {
         titulo: formData.value.titulo,
@@ -325,6 +351,24 @@ watch(
   () => route.query.expedienteId,
   () => {
     loadCitas()
+  }
+)
+
+// Ajustar automáticamente la fecha de fin si se vuelve inválida
+watch(
+  () => formData.value.fechaInicio,
+  (newFechaInicio) => {
+    if (newFechaInicio && formData.value.fechaFin && formData.value.fechaFin < newFechaInicio) {
+      // Ajustar la fecha de fin a 1 hora después de la fecha de inicio
+      const nuevaFechaFin = new Date(newFechaInicio.getTime() + 60 * 60 * 1000)
+      formData.value.fechaFin = nuevaFechaFin
+      toast.add({
+        severity: 'info',
+        summary: 'Fecha ajustada',
+        detail: 'La fecha de fin se ajustó automáticamente',
+        life: 3000
+      })
+    }
   }
 )
 </script>
@@ -745,7 +789,11 @@ watch(
                 class="w-full"
                 showIcon
                 iconDisplay="input"
+                :class="{ 'p-invalid': !fechasValidas }"
               />
+              <small v-if="!fechasValidas" class="p-error">
+                {{ mensajeErrorFechas }}
+              </small>
             </div>
 
             <div class="form-field">
@@ -798,6 +846,7 @@ watch(
             :icon="isEditing ? 'pi pi-check' : 'pi pi-plus'"
             @click="guardarCita"
             :loading="loading"
+            :disabled="!fechasValidas"
             rounded
             raised
             size="large"
